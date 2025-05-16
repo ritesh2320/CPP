@@ -33,9 +33,25 @@ int countWaysTab(int n)
     count[0] = 1;
     count[1] = 1;
 
-    for (int i = 2; i <= n + 1; i++)
+    for (int i = 2; i <= n; i++)
     {
         count[i] = count[i - 1] + count[i - 2];
+    }
+    return count[n];
+}
+
+// variation
+
+int CountWaysvariation(int n)
+{ // 1,2& 3 jumps are allowed
+    vector<int> count(n + 1, 0);
+    count[0] = 1;
+    count[1] = 1;
+    count[2] = 2;
+
+    for (int i = 3; i <= n; i++)
+    {
+        count[i] = count[i - 1] + count[i - 2] + count[i - 3];
     }
     return count[n];
 }
@@ -48,5 +64,6 @@ int main()
     cout << countWaysRec(n) << endl;
     cout << countWaysMemo(n, count) << endl;
     cout << countWaysTab(n) << endl;
+    cout << CountWaysvariation(n) << endl;
     return 0;
 }
